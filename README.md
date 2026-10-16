@@ -45,15 +45,15 @@ The intended internal server address is `192.168.40.10`.
 OSPF process 1 advertises the routed networks. During the captured failover test, R1's primary `GigabitEthernet0/1` was shut down and the route to `192.168.50.0/24` changed to the serial backup next hop `10.0.0.6` through `Serial0/1/0`. The primary interface was subsequently brought back up.
 
 See:
-- [Screenshots/03_ospf_neighbors_and_acl.png](Screenshots/03_ospf_neighbors_and_acl.png)
-- [Screenshots/05_failover_to_serial_backup.png](Screenshots/05_failover_to_serial_backup.png)
-- [Screenshots/06_primary_link_restored.png](Screenshots/06_primary_link_restored.png)
+- [screenshots/03_ospf_neighbors_and_acl.png](screenshots/03_ospf_neighbors_and_acl.png)
+- [screenshots/05_failover_to_serial_backup.png](screenshots/05_failover_to_serial_backup.png)
+- [screenshots/06_primary_link_restored.png](screenshots/06_primary_link_restored.png)
 
 ## Layer 2 redundancy
 
 Two switch-to-switch links connect `SW-Core1` and `SW-Core2`. STP identifies root/designated ports and prevents a Layer 2 loop by blocking a redundant path where necessary. An orange indicator on a redundant switch link can be normal when STP has placed that port into a blocking state.
 
-See [Screenshots/04_stp_redundancy.png](Screenshots/04_stp_redundancy.png).
+See [screenshots/04_stp_redundancy.png](screenshots/04_stp_redundancy.png).
 
 ## ACL security policy
 
@@ -71,7 +71,7 @@ The intended policy is to block IP traffic between HR and Finance while permitti
 
 The PC-HR command prompt screenshot shows successful pings to the internal server `192.168.40.10` with 0% packet loss. A ping to `192.168.30.21` also received replies after one initial timeout.
 
-See [Screenshots/07_hr_to_server_connectivity.png](Screenshots/07_hr_to_server_connectivity.png).
+See [screenshots/07_hr_to_server_connectivity.png](screenshots/07_hr_to_server_connectivity.png).
 
 ## Verification commands
 
