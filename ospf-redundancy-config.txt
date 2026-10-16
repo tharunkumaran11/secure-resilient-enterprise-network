@@ -1,0 +1,58 @@
+# OSPF and redundant routed-link configuration reference
+# Adapt interface names only if your Packet Tracer device differs.
+# These are the commands used for the current project addressing plan.
+
+# R1
+enable
+configure terminal
+interface gigabitEthernet0/1
+ ip address 10.0.0.1 255.255.255.252
+ no shutdown
+exit
+interface serial0/1/0
+ ip address 10.0.0.5 255.255.255.252
+ no shutdown
+exit
+router ospf 1
+ network 10.0.0.0 0.0.0.3 area 0
+ network 10.0.0.4 0.0.0.3 area 0
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.20.0 0.0.0.255 area 0
+ network 192.168.30.0 0.0.0.255 area 0
+ network 192.168.40.0 0.0.0.255 area 0
+end
+write memory
+
+# R2
+enable
+configure terminal
+interface gigabitEthernet0/1
+ ip address 10.0.0.2 255.255.255.252
+ no shutdown
+exit
+interface serial0/1/0
+ ip address 10.0.0.6 255.255.255.252
+ no shutdown
+exit
+router ospf 1
+ network 10.0.0.0 0.0.0.3 area 0
+ network 10.0.0.4 0.0.0.3 area 0
+ network 192.168.50.0 0.0.0.255 area 0
+end
+write memory
+
+# Failover test (run on R1)
+enable
+configure terminal
+interface gigabitEthernet0/1
+ shutdown
+end
+show ip route ospf
+
+# Restore primary link (run on R1)
+configure terminal
+interface gigabitEthernet0/1
+ no shutdown
+end
+show ip ospf neighbor
+show ip route ospf

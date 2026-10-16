@@ -1,0 +1,35 @@
+# VLAN / trunk / ACL configuration reference
+# Use the existing project configuration as the source of truth.
+# Review port mappings before applying to a device.
+
+# Example VLAN creation on a switch
+enable
+configure terminal
+vlan 10
+ name HR
+vlan 20
+ name Finance
+vlan 30
+ name IT
+vlan 40
+ name Servers
+vlan 50
+ name Remote
+end
+show vlan brief
+show interfaces trunk
+
+# ACL 110 policy recorded for R1
+enable
+configure terminal
+access-list 110 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+access-list 110 deny ip 192.168.20.0 0.0.0.255 192.168.10.0 0.0.0.255
+access-list 110 permit ip any any
+end
+show access-lists 110
+
+# Note:
+# ACL 110 was intended to be applied inbound on R1 subinterfaces
+# GigabitEthernet0/0.10 and GigabitEthernet0/0.20.
+# Confirm the actual running configuration before reapplying:
+# show running-config
