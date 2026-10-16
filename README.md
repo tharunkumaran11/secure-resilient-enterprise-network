@@ -18,7 +18,7 @@ A Cisco Packet Tracer project demonstrating segmented departmental networks, int
 - End devices: `PC-HR`, `PC-Finance`, `PC-IT`, `PC-Remote`
 - Server: `SRV-Internal`
 
-See [Screenshots/01_network_topology.png](Screenshots/01_network_topology.png).
+See [screenshots/01_network_topology.png](screenshots/01_network_topology.png).
 
 ## VLAN and IP addressing plan
 
